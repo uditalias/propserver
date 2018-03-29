@@ -1,7 +1,7 @@
 import { createObserver } from '../src';
 
 describe('propserver', () => {
-    it('should creates new instance of PropertyObserver', () => {
+    it('should create new instance of PropertyObserver', () => {
         const target = {
             width: 100,
             height: 100,
