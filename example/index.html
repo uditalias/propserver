@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        div#root {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+        }
+
+        div#left {
+            width: 50%;
+            height: 100vh;
+            background-color: #0985f9;
+            transition: width 200ms;
+            border-right: dotted 10px #30d3d8;
+        }
+
+        div#right {
+            width: 50%;
+            height: 100vh;
+            background-color: #30d3d8;
+            transition: width 200ms;
+            border-left: dotted 10px #0985f9;
+        }
+
+        ul#log {
+            list-style-type: none;
+            height: 100%;
+            overflow: scroll;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+        }
+
+        ul#log li {
+            transition: background-color .5s, box-shadow .5s;
+            transition-delay: .1s;
+            background-color: #c300a2;
+            box-shadow: 0 1.4rem 2.8rem 0 rgba(0, 0, 0, 0.25);
+            color: #fff;
+            padding: 5px;
+            margin: 0;
+        }
+
+        ul#log li + ul#log li {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root">
+        <div id="left"></div>
+        <div id="right"></div>
+
+        <ul id="log"></ul>
+    </div>
+
+    <script src="dist/bundle.js"></script>
+</body>
+
+</html>

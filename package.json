@@ -1,0 +1,64 @@
+{
+  "name": "propserver",
+  "version": "0.0.1",
+  "description": "Responsive property observation for JavaScript",
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rimraf ./lib && rimraf dist",
+    "build:lib": "babel src --out-dir lib",
+    "build:umd": "cross-env NODE_ENV=development webpack --bail",
+    "build:umd:min": "cross-env NODE_ENV=production webpack --bail",
+    "build": "npm run clean && npm update && npm run lint && npm run build:lib && npm run build:umd && npm run build:umd:min",
+    "example": "webpack-dev-server --content-base example/ --config example/webpack.config.js",
+    "lint": "eslint ./src",
+    "test": "jest",
+    "prepublish": " npm run lint && npm test && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uditalias/propserver.git"
+  },
+  "keywords": [
+    "property",
+    "observer",
+    "propserver"
+  ],
+  "files": [
+    "dist",
+    "lib",
+    "src"
+  ],
+  "author": {
+    "name": "Udi Talias",
+    "email": "udi.talias@gmail.com",
+    "url": "https://github.com/uditalias"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uditalias/propserver/issues"
+  },
+  "jest": {
+    "testRegex": "(/__test__/.*\\.test.js)$",
+    "setupFiles": [
+      "./jest.setup.js"
+    ]
+  },
+  "homepage": "https://github.com/uditalias/propserver#readme",
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.0",
+    "babel-jest": "22.4.3",
+    "babel-loader": "7.1.4",
+    "babel-preset-env": "1.6.1",
+    "cross-env": "5.1.4",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-plugin-import": "2.9.0",
+    "eslint-plugin-jest": "21.15.0",
+    "jest": "22.4.3",
+    "regenerator-runtime": "0.11.1",
+    "rimraf": "2.6.2",
+    "webpack": "3.11.0",
+    "webpack-dev-server": "2.11.2"
+  }
+}

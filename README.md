@@ -1,2 +1,2 @@
 # propserver
-Responsive property observation for JavaScript
+Responsive property observation for JavaScript 🧙‍

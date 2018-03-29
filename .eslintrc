@@ -1,0 +1,31 @@
+{
+    "extends": "airbnb-base",
+    "rules": {
+        "func-names": [
+            "error",
+            "never"
+        ],
+        "indent": [
+            2,
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "no-underscore-dangle": 0,
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error"
+    },
+    "env": {
+        "jest/globals": true
+    },
+    "globals": {
+        "window": true
+    },
+    "plugins": [
+        "jest"
+    ]
+}
