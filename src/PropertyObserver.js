@@ -73,6 +73,10 @@ export default class PropertyObserver {
     }
 
     observe() {
+        if (this._observed) {
+            return;
+        }
+
         this._rafId = raf(this._watch);
     }
 
