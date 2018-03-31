@@ -6,6 +6,10 @@ export function isFunction(subject) {
     return typeof (subject) === 'function';
 }
 
+export function isString(subject) {
+    return typeof (subject) === 'string';
+}
+
 export function raf(fn) {
     return window.requestAnimationFrame(fn);
 }

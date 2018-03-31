@@ -43,6 +43,8 @@ const left = createObserver($left.style, "width", leftCallback);
 
 left.observe();
 
-const right = createObserver($right, "offsetLeft", rightCallback);
+// const right = createObserver($right, "offsetLeft", rightCallback);
+const right = createObserver(() => $right.offsetLeft, rightCallback);
+
 
 right.observe();

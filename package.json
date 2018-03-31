@@ -12,7 +12,8 @@
     "example": "webpack-dev-server --content-base example/ --config example/webpack.config.js",
     "lint": "eslint ./src",
     "test": "jest",
-    "prepublish": " npm run lint && npm test && npm run build"
+    "prepublish": "npm run lint && npm test && npm run build",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",

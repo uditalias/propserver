@@ -1,4 +1,4 @@
-import { isFunction, isDefined, raf, caf } from '../src/utils';
+import { isFunction, isDefined, raf, caf, isString } from '../src/utils';
 
 describe('utils', () => {
     describe('isFunction', () => {
@@ -34,6 +34,20 @@ describe('utils', () => {
             expect(isDefined(undefined)).toBe(false);
             expect(isDefined(a)).toBe(false);
             expect(isDefined((() => { })())).toBe(false);
+        });
+    });
+
+    describe('isString', () => {
+        it('should return true if subject is string', () => {
+            expect(isDefined('')).toBe(true);
+            expect(isDefined((1).toString())).toBe(true);
+            expect(isDefined(('Hello').toString())).toBe(true);
+        });
+
+        it('should return false if subject is not a string', () => {
+            expect(isString(undefined)).toBe(false);
+            expect(isString(1)).toBe(false);
+            expect(isString(() => { })).toBe(false);
         });
     });
 

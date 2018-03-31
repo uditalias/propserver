@@ -12,7 +12,7 @@ module.exports = {
 
     resolve: {
         alias: {
-            propserver: path.join(__dirname, '..'),
+            propserver: path.join(__dirname, '../src'),
         },
     },
 

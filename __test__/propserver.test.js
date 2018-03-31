@@ -69,20 +69,39 @@ describe('propserver', () => {
         });
     });
 
+    it('should observe property by getter function', (done) => {
+        const propertyFetcher = jest.fn(() => 1);
+
+        const callback = jest.fn(() => {
+
+        });
+
+        const observer = createObserver(propertyFetcher, callback);
+
+        observer.observe();
+
+        setTimeout(() => {
+            expect(observer).toBeDefined();
+            expect(propertyFetcher).toBeCalled();
+            expect(callback).toHaveBeenCalledTimes(0);
+
+            observer.disconnect();
+
+            done();
+        });
+    });
+
     it('should throw TypeError if target is not defined', () => {
         const throwable = () => createObserver(undefined, '', () => { });
 
         expect(throwable).toThrowError('PropertyObserver: both target and property must be defined');
     });
 
-    it('should throw TypeError if callback is not a function', () => {
-        const target = {
-            scrollHeight: 100,
-            scrollWidth: 100,
-        };
+    it('should throw TypeError if property getter or callback aren\'t functions', () => {
+        const target = () => { };
 
-        const throwable = () => createObserver(target, 'scrollHeight', '');
+        const throwable = () => createObserver(target, 'scrollHeight');
 
-        expect(throwable).toThrowError('PropertyObserver: callback must be a function');
+        expect(throwable).toThrowError('PropertyObserver: propertyGetter and callback must be functions');
     });
 });
