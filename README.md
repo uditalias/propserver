@@ -4,6 +4,9 @@
 
 Observe object properties for real time changes, get notified when the propery change.
 
+![propserver](https://img.shields.io/npm/v/propserver.svg?style=flat-square)
+
+
 ## What is it good for
 
 Sometimes you want to be notified on each frame about a property change so you can handle things in a more responsive way.  
