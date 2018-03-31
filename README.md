@@ -4,7 +4,7 @@
 
 Observe object properties for real time changes, get notified when the propery change.
 
-![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)
+![propserver](https://img.shields.io/npm/v/propserver.svg?style=flat-square)
 
 
 ## What is it good for
