@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- '8.9'
+before_script:
+- npm install --development
+script:
+- npm run lint && npm run test
+
+after_success:
+notifications:
+  email:
+  - udi.talias@gmail.com

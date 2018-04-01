@@ -5,6 +5,7 @@
 Observe object properties for real time changes, get notified when the propery change.
 
 ![propserver](https://img.shields.io/npm/v/propserver.svg?style=flat-square)
+[![Travis](https://img.shields.io/travis/uditalias/propserver.svg?style=flat-square)](https://travis-ci.org/uditalias/propserver)
 
 
 ## What is it good for
