@@ -13,10 +13,10 @@ Observe object properties for real time changes, get notified when the propery c
 
 Sometimes you want to be notified on each frame about a property change so you can handle things in a more responsive way.  
 Consider when you have an element on a page, and you want
-to check its `offsetTop` property so you know when the element is inside the viewport.
-You can observe the element `offetTop` propserver and be notified on each frame when the property changed.
+to check its `offsetTop` property so you know when the element is inside/outside the viewport.  
+You can observe the element `offetTop` with propserver and be notified when it changes.
 
-**This module should be used on the client side. don't use it with node**
+**This module should be used on the client side**
 
 ## Install
 Install via npm with
