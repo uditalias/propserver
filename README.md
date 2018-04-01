@@ -1,4 +1,5 @@
-# propserver 🧙
+# <img src='https://raw.githubusercontent.com/uditalias/propserver/master/assets/propserver.png' height='100' alt='Propserver Logo' />
+
 ### Responsive property observation for JavaScript
 
 
