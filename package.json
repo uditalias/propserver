@@ -1,8 +1,9 @@
 {
   "name": "propserver",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Responsive property observation for JavaScript",
   "main": "lib/index.js",
+  "typings": "propserver.d.ts",
   "scripts": {
     "clean": "rimraf ./lib && rimraf dist",
     "build:lib": "babel src --out-dir lib",
@@ -27,7 +28,8 @@
   "files": [
     "dist",
     "lib",
-    "src"
+    "src",
+    "propserver.d.ts"
   ],
   "author": {
     "name": "Udi Talias",
