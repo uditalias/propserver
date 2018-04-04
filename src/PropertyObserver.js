@@ -1,15 +1,15 @@
 import { isDefined, isFunction } from './utils';
 import timeline from './timeline';
 
-const ObserverStrategy = Object.freeze({
+const ObserverStrategy = {
     None: 0,
     Target: 1,
     Getter: 2,
-});
+};
 
 export default class PropertyObserver {
     constructor(target, property, callback) {
-        this._firstChangeReceived = false;
+        this._firstValueReceived = false;
         this._next = this._next.bind(this);
         this._strategy = ObserverStrategy.None;
         this._subscription = null;
@@ -51,10 +51,10 @@ export default class PropertyObserver {
         const nextValue = this._getValue();
 
         if (this._currentValue !== nextValue) {
-            if (this._firstChangeReceived) {
+            if (this._firstValueReceived) {
                 this._callback(nextValue, this._currentValue);
             } else {
-                this._firstChangeReceived = true;
+                this._firstValueReceived = true;
             }
 
             this._currentValue = nextValue;
@@ -86,6 +86,6 @@ export default class PropertyObserver {
             this._subscription = null;
         }
 
-        this._firstChangeReceived = false;
+        this._firstValueReceived = false;
     }
 }
