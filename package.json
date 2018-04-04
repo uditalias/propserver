@@ -12,7 +12,9 @@
     "build": "npm run clean && npm update && npm run lint && npm run build:lib && npm run build:umd && npm run build:umd:min",
     "example": "webpack-dev-server --content-base example/ --config example/webpack.config.js",
     "lint": "eslint ./src",
+    "lint:watch": "esw ./src --quiet -w",
     "test": "jest",
+    "test:watch": "jest --watch --verbose",
     "prepublish": "npm run lint && npm test && npm run build",
     "postversion": "git push && git push --tags"
   },
@@ -41,6 +43,7 @@
     "url": "https://github.com/uditalias/propserver/issues"
   },
   "jest": {
+    "collectCoverage": true,
     "testRegex": "(/__test__/.*\\.test.js)$",
     "setupFiles": [
       "./jest.setup.js"
@@ -58,6 +61,7 @@
     "eslint-config-airbnb-base": "12.1.0",
     "eslint-plugin-import": "2.9.0",
     "eslint-plugin-jest": "21.15.0",
+    "eslint-watch": "^3.1.4",
     "jest": "22.4.3",
     "regenerator-runtime": "0.11.1",
     "rimraf": "2.6.2",
