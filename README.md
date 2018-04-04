@@ -21,6 +21,13 @@ Install via npm with
 $ npm install --save propserver
 ```
 
+## What makes it responsive
+
+As you know, calling `requestAnimationFrame` to request an animation frame help us to optimize operations and
+queries on the DOM, since the browser waits for the next frame to render in order to run our callbacks. However,
+when requesting many animation frames synchronously, the browser will stack all the repeated request animation frames.  
+When you creates more than one observer, all animation frames are managed in a timeline so only one `requestAnimationFrame` gets called. 
+
 ## Creating property observer
 ```javascript
 import { createObserver } from "propserver";

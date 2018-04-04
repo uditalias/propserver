@@ -1,4 +1,4 @@
-import { isFunction, isDefined, raf, caf, isString } from '../src/utils';
+import { isFunction, isDefined, isString, triggerUnsafe, raf, caf } from '../src/utils';
 
 describe('utils', () => {
     describe('isFunction', () => {
@@ -71,6 +71,22 @@ describe('utils', () => {
             raf(() => {
                 expect(frame).toHaveBeenCalledTimes(0);
             });
+        });
+    });
+
+    describe('trigger unsafe', () => {
+        it('should trigger function', () => {
+            const func = jest.fn(() => { });
+
+            triggerUnsafe(func);
+
+            expect(func).toBeCalled();
+        });
+
+        it('should throw error when argument is not a function', () => {
+            const throwable = () => triggerUnsafe(false);
+
+            expect(throwable).toThrow();
         });
     });
 });

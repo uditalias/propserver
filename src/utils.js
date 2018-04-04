@@ -17,3 +17,7 @@ export function raf(fn) {
 export function caf(rafId) {
     return window.cancelAnimationFrame(rafId);
 }
+
+export function triggerUnsafe(fn) {
+    fn();
+}

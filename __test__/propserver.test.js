@@ -1,4 +1,5 @@
 import { createObserver } from '../src';
+import timeline from '../src/timeline';
 
 describe('propserver', () => {
     it('should create new instance of PropertyObserver', () => {
@@ -37,8 +38,8 @@ describe('propserver', () => {
                 observer.disconnect();
 
                 done();
-            });
-        });
+            }, TIMEFRAME);
+        }, TIMEFRAME);
     });
 
     it('should disconnect PropertyObserver before observed after property changed', (done) => {
@@ -88,13 +89,34 @@ describe('propserver', () => {
             observer.disconnect();
 
             done();
-        });
+        }, TIMEFRAME);
+    });
+
+    it('should subscribe to timeline only once', () => {
+        const subscribe = jest.spyOn(timeline, "subscribe");
+
+        const observer = createObserver({}, 'someProp', () => { });
+
+        observer.observe();
+        observer.observe();
+        observer.observe();
+
+        expect(subscribe).toHaveBeenCalledTimes(1);
+
+        subscribe.mockReset();
+        subscribe.mockRestore();
     });
 
     it('should throw TypeError if target is not defined', () => {
         const throwable = () => createObserver(undefined, '', () => { });
 
-        expect(throwable).toThrowError('PropertyObserver: both target and property must be defined');
+        expect(throwable).toThrowError('propserver: both target and property must be defined');
+    });
+
+    it('should throw TypeError if callback is not a funcion', () => {
+        const throwable = () => createObserver({}, "", "just a string");
+
+        expect(throwable).toThrowError('propserver: callback must be a function');
     });
 
     it('should throw TypeError if property getter or callback aren\'t functions', () => {
@@ -102,6 +124,6 @@ describe('propserver', () => {
 
         const throwable = () => createObserver(target, 'scrollHeight');
 
-        expect(throwable).toThrowError('PropertyObserver: propertyGetter and callback must be functions');
+        expect(throwable).toThrowError('propserver: propertyGetter and callback must be functions');
     });
 });

@@ -1,4 +1,5 @@
-import { raf, caf, isDefined, isFunction } from './utils';
+import { isDefined, isFunction } from './utils';
+import timeline from './timeline';
 
 const ObserverStrategy = Object.freeze({
     None: 0,
@@ -8,10 +9,11 @@ const ObserverStrategy = Object.freeze({
 
 export default class PropertyObserver {
     constructor(target, property, callback) {
-        this._observed = false;
-        this._rafId = null;
-        this._watch = this._watch.bind(this);
+        this._firstChangeReceived = false;
+        this._next = this._next.bind(this);
         this._strategy = ObserverStrategy.None;
+        this._subscription = null;
+        this._currentValue = null;
 
         if (!callback) {
             this._initializeWithPropertyGetterFunction(target, property);
@@ -22,7 +24,7 @@ export default class PropertyObserver {
 
     _initializeWithPropertyGetterFunction(propertyGetter, callback) {
         if (!isFunction(propertyGetter) || !isFunction(callback)) {
-            throw new TypeError('PropertyObserver: propertyGetter and callback must be functions');
+            throw new TypeError('propserver: propertyGetter and callback must be functions');
         }
 
         this._strategy = ObserverStrategy.Getter;
@@ -32,11 +34,11 @@ export default class PropertyObserver {
 
     _initializeWithTargetProperty(target, property, callback) {
         if (!isDefined(target) || !isDefined(property)) {
-            throw new TypeError('PropertyObserver: both target and property must be defined');
+            throw new TypeError('propserver: both target and property must be defined');
         }
 
         if (!callback || !isFunction(callback)) {
-            throw new TypeError('PropertyObserver: callback must be a function');
+            throw new TypeError('propserver: callback must be a function');
         }
 
         this._strategy = ObserverStrategy.Target;
@@ -45,20 +47,18 @@ export default class PropertyObserver {
         this._callback = callback;
     }
 
-    _watch() {
+    _next() {
         const nextValue = this._getValue();
 
         if (this._currentValue !== nextValue) {
-            if (this._observed) {
+            if (this._firstChangeReceived) {
                 this._callback(nextValue, this._currentValue);
             } else {
-                this._observed = true;
+                this._firstChangeReceived = true;
             }
 
             this._currentValue = nextValue;
         }
-
-        this._rafId = raf(this._watch);
     }
 
     _getValue() {
@@ -73,16 +73,19 @@ export default class PropertyObserver {
     }
 
     observe() {
-        if (this._observed) {
+        if (this._subscription) {
             return;
         }
 
-        this._rafId = raf(this._watch);
+        this._subscription = timeline.subscribe(this._next);
     }
 
     disconnect() {
-        caf(this._rafId);
-        this._rafId = null;
-        this._observed = false;
+        if (this._subscription) {
+            this._subscription();
+            this._subscription = null;
+        }
+
+        this._firstChangeReceived = false;
     }
 }

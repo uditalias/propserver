@@ -20,7 +20,6 @@ function changeWidth() {
 
 setInterval(changeWidth, random(500, 1500, true));
 
-
 function log(text) {
     const li = document.createElement("li");
     li.innerText = text;
@@ -32,18 +31,17 @@ function log(text) {
 }
 
 function leftCallback(value, prevValue) {
-    log(`#left width changed from ${value} to ${prevValue}`);
+    log(`#left width changed from ${prevValue} to ${value}`);
 }
 
 function rightCallback(value, prevValue) {
-    log(`#right offsetLeft changed from ${value} to ${prevValue}`);
+    log(`#right offsetLeft changed from ${prevValue} to ${value}`);
 }
 
 const left = createObserver($left.style, "width", leftCallback);
 
 left.observe();
 
-// const right = createObserver($right, "offsetLeft", rightCallback);
 const right = createObserver(() => $right.offsetLeft, rightCallback);
 
 
