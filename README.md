@@ -6,12 +6,9 @@
 [![Travis](https://img.shields.io/travis/uditalias/propserver.svg?style=flat-square)](https://travis-ci.org/uditalias/propserver)
 
 
-## What is it good for
+## What is it good for?
 
-Sometimes you want to be notified on each frame about a property change so you can handle things in a more responsive way.  
-Consider when you have an element on a page, and you want
-to check its `offsetTop` property so you know when the element is inside/outside the viewport.  
-You can observe the element `offetTop` with propserver and be notified when it changes.
+Sometimes you want to be notified on each frame about a property change so you can handle things in a more responsive way. Consider when you have an element on a page, and you want to check its `offsetTop` property so you know when the element is inside/outside the viewport. You can observe the element's `offsetTop` with propserver and be notified when it changes.
 
 **This module should be used on the client side**
 
@@ -21,7 +18,7 @@ Install via npm with
 $ npm install --save propserver
 ```
 
-## What makes it responsive
+## What makes it responsive?
 
 As you know, calling `requestAnimationFrame` to request an animation frame helps us to optimize operations and
 queries on the DOM, since the browser waits for the next frame to render in order to run our callbacks. However,
@@ -51,7 +48,7 @@ observer.disconnect();
 
 **createObserver(target, property, callback)**
 
-Factory function to create property observer.
+Factory function to create a property observer.
 
 | Name | Type | Required | Description |
 | - | - | - | - |
@@ -66,9 +63,9 @@ Factory function to create property observer.
 | property getter | Function | true | a function to get the property |
 | callback | Function | true | a callback function to be called when the property changes  `function (newValue, oldValue) {}` |
 
-The second option to create observer with property getter function. this method is for cases where
+The second way to create an observer is with a property-getter function. This method is for cases where
 you want to run a function to get the value, like where the property is not a direct property of your target.  
-Here is a property getter example:
+Here is a property-getter example:
 
 ```javascript
 () => {
