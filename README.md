@@ -1,6 +1,6 @@
 # <img src='https://raw.githubusercontent.com/uditalias/propserver/master/assets/propserver.png' height='100' alt='Propserver Logo' />
 
-### Responsive property observation for JavaScript
+### A Responsive way to observe DOM element properties 🕶
 
 ![propserver](https://img.shields.io/npm/v/propserver.svg?style=flat-square)
 [![Travis](https://img.shields.io/travis/uditalias/propserver.svg?style=flat-square)](https://travis-ci.org/uditalias/propserver)
